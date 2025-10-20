@@ -863,6 +863,9 @@ static inline unsigned long target_util(struct sugov_policy *sg_policy,
 	util = freq_to_util(sg_policy, freq);
 	util = mult_frac(util, TARGET_LOAD, 100);
 	return util;
+
+	if (cpu_bw_dl(cpu_rq(sg_cpu->cpu)) > sg_cpu->bw_dl)
+		WRITE_ONCE(sg_policy->limits_changed, true);
 }
 
 static void sugov_update_single(struct update_util_data *hook, u64 time,
