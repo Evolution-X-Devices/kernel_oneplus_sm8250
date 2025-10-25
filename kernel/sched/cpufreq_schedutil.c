@@ -853,6 +853,7 @@ static inline void ignore_dl_rate_limit(struct sugov_cpu *sg_cpu, struct sugov_p
 	if (cpu_bw_dl(cpu_rq(sg_cpu->cpu)) > sg_cpu->bw_dl)
 		WRITE_ONCE(sg_policy->limits_changed, true);
 #endif
+
 }
 
 static inline unsigned long target_util(struct sugov_policy *sg_policy,
@@ -1800,6 +1801,7 @@ static void sugov_limits(struct cpufreq_policy *policy)
 		raw_spin_unlock_irqrestore(&sg_policy->update_lock, flags);
 	}
 
+<<<<<<< HEAD
 #ifdef OPLUS_FEATURE_POWER_CPUFREQ
 	if (policy->min == policy->cpuinfo.max_freq &&
 	    policy->min > sg_policy->min_freq) {
@@ -1817,6 +1819,8 @@ static void sugov_limits(struct cpufreq_policy *policy)
 	sg_policy->after_limits_changed = true;
 #endif
 
+=======
+>>>>>>> 5976bf775ad2 (Merge tag 'v4.19.325-cip125' of https://git.kernel.org/pub/scm/linux/kernel/git/cip/linux-cip into android13-4.19-kona)
 	/*
 	 * The limits_changed update below must take place before the updates
 	 * of policy limits in cpufreq_set_policy() or a policy limits update
